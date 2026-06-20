@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悟空体育 · 再次相遇的知识角落</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; }
+        body { background: #f5f9fc; color: #1e2b3a; line-height: 1.7; padding: 20px; }
+        .page-wrap { max-width: 1120px; margin: 0 auto; }
+
+        /* header */
+        .site-header { margin-bottom: 2.2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 1px solid #cde0e8; padding-bottom: 1.2rem; }
+        .logo-area { display: flex; align-items: center; gap: 0.5rem; }
+        .logo-icon { width: 32px; height: 32px; background: #1f7a8c; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 1rem; }
+        .logo-text { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; color: #124a5a; }
+        .tagline { font-size: 0.95rem; color: #3b6f7e; background: #dceff5; padding: 0.3rem 1rem; border-radius: 30px; }
+
+        /* hero 区 */
+        .hero-card { background: linear-gradient(145deg, #e4f0f5 0%, #d0e6ef 100%); border-radius: 28px; padding: 2.2rem 2rem; margin-bottom: 2.5rem; box-shadow: 0 6px 18px rgba(28, 80, 92, 0.08); display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; }
+        .hero-text { flex: 2 1 300px; }
+        .hero-text h1 { font-size: 2rem; font-weight: 600; color: #06323f; margin-bottom: 0.6rem; }
+        .hero-text p { font-size: 1.05rem; color: #1a4d5c; margin-bottom: 0.4rem; }
+        .hero-highlight { background: #1f7a8c; color: #fff; padding: 0.2rem 0.9rem; border-radius: 40px; display: inline-block; font-size: 0.85rem; font-weight: 500; margin-top: 0.5rem; }
+        .hero-visual { flex: 1 1 140px; text-align: center; }
+        .hero-visual span { font-size: 3.8rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05)); }
+
+        /* 卡片网格 */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.6rem; margin-bottom: 2.8rem; }
+        .card { background: #ffffff; border-radius: 20px; padding: 1.6rem 1.4rem 1.8rem; box-shadow: 0 4px 12px rgba(28, 70, 88, 0.05); border: 1px solid #dbeaf0; transition: all 0.2s ease; }
+        .card:hover { border-color: #9bc9d9; box-shadow: 0 8px 20px rgba(28, 80, 92, 0.08); }
+        .card-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+        .card h3 { font-size: 1.15rem; font-weight: 600; color: #124a5a; margin-bottom: 0.3rem; }
+        .card p { font-size: 0.95rem; color: #2a4e5e; }
+
+        /* 信息分栏 */
+        .info-duo { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.8rem; }
+        .info-box { flex: 1 1 280px; background: #f0f7fa; border-radius: 20px; padding: 1.8rem 1.6rem; border-left: 4px solid #1f7a8c; }
+        .info-box h4 { font-size: 1.1rem; color: #06323f; margin-bottom: 0.8rem; }
+        .info-box p, .info-box li { font-size: 0.95rem; color: #1d4453; }
+        .info-box ul { padding-left: 1.2rem; margin-top: 0.4rem; }
+        .info-box li { margin-bottom: 0.25rem; }
+
+        /* 提示区 */
+        .notice-strip { background: #e3f0f5; border-radius: 60px; padding: 1rem 1.6rem; margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; font-size: 0.95rem; border: 1px solid #b9d5e1; }
+        .notice-label { background: #1f7a8c; color: #fff; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.03em; }
+        .notice-strip a { color: #06323f; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+        .notice-strip a:hover { color: #1f7a8c; }
+
+        /* 常见问题摘要 */
+        .faq-mini { margin-bottom: 2.8rem; }
+        .faq-mini h2 { font-size: 1.3rem; color: #06323f; margin-bottom: 1rem; font-weight: 600; border-left: 4px solid #1f7a8c; padding-left: 0.8rem; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .faq-item { background: #fafcfd; border-radius: 16px; padding: 1rem 1.2rem; border: 1px solid #d8e6ed; }
+        .faq-item strong { display: block; font-size: 0.92rem; color: #124a5a; margin-bottom: 0.15rem; }
+        .faq-item span { font-size: 0.88rem; color: #2b5b6d; }
+
+        /* 相关资源 */
+        .related { background: #eaf3f7; border-radius: 24px; padding: 1.6rem 2rem; margin-bottom: 2rem; }
+        .related h3 { font-size: 1.1rem; margin-bottom: 0.8rem; color: #06323f; }
+        .related-tags { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; }
+        .related-tags a { background: #d5e7ef; padding: 0.25rem 0.9rem; border-radius: 30px; color: #1a4d5c; font-size: 0.9rem; text-decoration: none; transition: 0.1s; }
+        .related-tags a:hover { background: #b9d5e1; color: #06323f; }
+
+        /* footer */
+        .site-footer { border-top: 1px solid #cde0e8; padding-top: 1.4rem; margin-top: 1rem; font-size: 0.88rem; color: #4a6f7e; display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: space-between; }
+
+        @media (max-width: 480px) {
+            body { padding: 14px; }
+            .hero-text h1 { font-size: 1.6rem; }
+            .hero-card { padding: 1.6rem 1.2rem; }
+            .grid-cards { grid-template-columns: 1fr; }
+            .info-duo { flex-direction: column; }
+            .notice-strip { border-radius: 30px; padding: 0.9rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- header -->
+    <header class="site-header">
+        <div class="logo-area">
+            <span class="logo-icon">悟</span>
+            <span class="logo-text">悟空体育</span>
+        </div>
+        <div class="tagline">再次探访 · 常来常新</div>
+    </header>
+
+    <!-- hero 再次访问的邀请 -->
+    <div class="hero-card">
+        <div class="hero-text">
+            <h1>又见面了，老朋友</h1>
+            <p>每一次回来，都会有更清晰的脉络。知识库已经悄悄更新，等你从容翻阅。</p>
+            <span class="hero-highlight">📌 保存到书签，随时回看</span>
+        </div>
+        <div class="hero-visual">
+            <span>📚</span>
+        </div>
+    </div>
+
+    <!-- 卡片网格：目录感布局 -->
+    <div class="grid-cards">
+        <div class="card">
+            <div class="card-icon">📖</div>
+            <h3>平台速览</h3>
+            <p>从活动规则到常见术语，<a href="https://official-wukongsports.com" style="color: #1f7a8c; text-decoration: underline;">悟空体育</a> 的知识体系按模块组织，适合快速定位。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔖</div>
+            <h3>收藏与回溯</h3>
+            <p>把常用页面加入收藏夹，下次再访不必从头查找。持续关注，积累自己的使用笔记。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🧭</div>
+            <h3>场景索引</h3>
+            <p>新手入门、日常查阅、深度了解——不同阶段都有对应的内容卡片，按需取用。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📌</div>
+            <h3>更新动态</h3>
+            <p>信息保持活力，定期补充说明与 FAQ 条目。如果一段时间没来，不妨重新逛一圈。</p>
+        </div>
+    </div>
+
+    <!-- 信息区 + 提示区 二合一布局 -->
+    <div class="info-duo">
+        <div class="info-box">
+            <h4>📋 说明区</h4>
+            <p>本页面作为知识库的轻量入口，汇集了关于平台结构、常用指引和注意事项的摘要。所有内容均基于公开信息整理，旨在帮助再次访问的朋友快速找回节奏。</p>
+            <p style="margin-top: 0.8rem;">如果你刚刚收藏这个站点，或许可以先从「平台速览」卡片开始，逐渐熟悉整体的内容分布。</p>
+        </div>
+        <div class="info-box">
+            <h4>💡 提示区</h4>
+            <ul>
+                <li>建议将链接保存到浏览器书签，方便下次直接回来。</li>
+                <li>页面内容会不定期微调，长期关注才能不错过细节变化。</li>
+                <li>遇到不确定的表述时，可以回到这里对照基础说明。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 再次访问专用提示条 嵌入了链接 -->
+    <div class="notice-strip">
+        <span class="notice-label">🔄 再次访问</span>
+        <span>如果你已经有一段时间没有登录，不妨先回顾一下 <a href="https://official-wukongsports.com">悟空体育</a> 的最新信息，或者翻翻下面整理的常见问题。</span>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h2>❓ 常被问起的几点</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <strong>如何快速找到之前的页面？</strong>
+                <span>使用浏览器书签功能，把当前页或者常用目录收藏起来。</span>
+            </div>
+            <div class="faq-item">
+                <strong>内容会不会很久不更新？</strong>
+                <span>知识库会持续维护，但节奏不固定，建议每隔一段时间回来看看。</span>
+            </div>
+            <div class="faq-item">
+                <strong>可以保存页面吗？</strong>
+                <span>当然可以。本地保存或截图都行，但以线上版本为准。</span>
+            </div>
+            <div class="faq-item">
+                <strong>遇到问题怎么办？</strong>
+                <span>先查阅说明区和提示区，大部分情况都能找到头绪。</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related">
+        <h3>🔗 相关信息 · 你可能也会留意</h3>
+        <div class="related-tags">
+            <a href="https://official-wukongsports.com">悟空体育</a>
+            <a href="#">使用指南</a>
+            <a href="#">常见词汇</a>
+            <a href="#">更新记录</a>
+            <a href="#">收藏夹建议</a>
+        </div>
+    </div>
+
+    <!-- footer 自然收尾 -->
+    <footer class="site-footer">
+        <span>悟空体育 · 知识库入口</span>
+        <span>常回来，慢慢看</span>
+    </footer>
+
+</div>
+</body>
+</html>
